@@ -1,5 +1,3 @@
--- Descomente e altere as linhas abaixo:
-
 DROP DATABASE IF EXISTS SpotifyClone;
 CREATE DATABASE IF NOT EXISTS SpotifyClone;
 
@@ -18,14 +16,14 @@ CREATE TABLE SpotifyClone.album(
     artist_id INT NOT NULL,
     release_year INT NOT NULL,
     FOREIGN KEY (artist_id) REFERENCES SpotifyClone.artist(artist_id)
-)
+);
 CREATE TABLE SpotifyClone.song(
     song_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     song_name VARCHAR(50) NOT NULL,
     album_id INT NOT NULL,
     duration INT NOT NULL,
     FOREIGN KEY (album_id) REFERENCES SpotifyClone.album(album_id)
-)
+);
 CREATE TABLE SpotifyClone.user(
     user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_name VARCHAR(50) NOT NULL,
@@ -33,19 +31,19 @@ CREATE TABLE SpotifyClone.user(
     plan_id INT NOT NULL,
     date_start DATE NOT NULL,
     FOREIGN KEY (plan_id) REFERENCES SpotifyClone.plan(plan_id)
-)
+);
 CREATE TABLE SpotifyClone.follow_artists(
     user_id INT NOT NULL,
     artist_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES SpotifyClone.user(user_id),
     FOREIGN KEY (artist_id) REFERENCES SpotifyClone.artist(artist_id)
-)
+);
 CREATE TABLE SpotifyClone.history(
     user_id INT NOT NULL,
     song_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES SpotifyClone.user(user_id),
     FOREIGN KEY (song_id) REFERENCES SpotifyClone.song(song_id)
-)
+);
 
 INSERT INTO SpotifyClone.plan (plan_id, plan_name, price)
 VALUES
