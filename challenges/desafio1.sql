@@ -82,6 +82,7 @@ VALUES
     ('9', 'The Bard`s Song', '7', '244'),
     ('10', 'Feeling Good', '8', '100');
 INSERT INTO SpotifyClone.user (user_id, user_name, age, plan_id, date_start)
+VALUES
     ('1', 'Barbara Liskov', '82', '1', '2019-10-20'),
 	('2', 'Robert Cecil Martin', '58', '1', '2017-01-06'),
 	('3', 'Ada Lovelace', '37', '4', '2017-12-30'),
