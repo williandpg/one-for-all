@@ -6,51 +6,17 @@ CREATE TABLE SpotifyClone.plan(
     plan_name VARCHAR(50) NOT NULL,
     price DOUBLE NOT NULL
 ) engine = InnoDB;
-CREATE TABLE SpotifyClone.artist(
-    artist_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    artist_name VARCHAR(50)
-) engine = InnoDB;
-CREATE TABLE SpotifyClone.album(
-    album_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    album_name VARCHAR(50),
-    artist_id INT,
-    release_year INT,
-    FOREIGN KEY (artist_id) REFERENCES SpotifyClone.artist(artist_id)
-);
-CREATE TABLE SpotifyClone.song(
-    song_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    song_name VARCHAR(50),
-    album_id INT,
-    duration INT,
-    FOREIGN KEY (album_id) REFERENCES SpotifyClone.album(album_id)
-);
-CREATE TABLE SpotifyClone.user(
-    user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_name VARCHAR(50),
-    age INT,
-    plan_id INT,
-    date_start DATE,
-    FOREIGN KEY (plan_id) REFERENCES SpotifyClone.plan(plan_id)
-);
-CREATE TABLE SpotifyClone.follow_artists(
-    user_id INT,
-    artist_id INT,
-    FOREIGN KEY (user_id) REFERENCES SpotifyClone.user(user_id),
-    FOREIGN KEY (artist_id) REFERENCES SpotifyClone.artist(artist_id)
-);
-CREATE TABLE SpotifyClone.history(
-    user_id INT,
-    song_id INT,
-    FOREIGN KEY (user_id) REFERENCES SpotifyClone.user(user_id),
-    FOREIGN KEY (song_id) REFERENCES SpotifyClone.song(song_id)
-);
-
 INSERT INTO SpotifyClone.plan (plan_id, plan_name, price)
 VALUES
     ('1', 'gratuito', '0.00'),
     ('2', 'universitário', '5.99'),
     ('3', 'pessoal', '6.99'),
     ('4', 'familiar', '7.99');
+
+CREATE TABLE SpotifyClone.artist(
+    artist_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    artist_name VARCHAR(50)
+) engine = InnoDB;
 INSERT INTO SpotifyClone.artist (artist_id, artist_name)
 VALUES
     ('1', 'Beyoncé'),
@@ -59,6 +25,14 @@ VALUES
     ('4', 'Baco Exu do Blues'),
     ('5', 'Blind Guardian'),
     ('6', 'Nina Simone');
+
+CREATE TABLE SpotifyClone.album(
+    album_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    album_name VARCHAR(50),
+    artist_id INT,
+    release_year INT,
+    FOREIGN KEY (artist_id) REFERENCES SpotifyClone.artist(artist_id)
+);
 INSERT INTO SpotifyClone.album (album_id, album_name, artist_id, release_year)
 VALUES
     ('1', 'Renaissance', '1', '2022'),
@@ -69,6 +43,14 @@ VALUES
     ('6', 'QVVJFA?', '4', '2003'),
     ('7', 'Somewhere Far Beyond', '5', '2007'),
     ('8', 'I Put A Spell On You', '6', '2012');
+
+CREATE TABLE SpotifyClone.song(
+    song_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    song_name VARCHAR(50),
+    album_id INT,
+    duration INT,
+    FOREIGN KEY (album_id) REFERENCES SpotifyClone.album(album_id)
+);
 INSERT INTO SpotifyClone.song (song_id, song_name, album_id, duration)
 VALUES
     ('1', 'BREAK MY SOUL', '1', '279'),
@@ -81,6 +63,15 @@ VALUES
     ('8', 'Samba em Paris', '6', '267'),
     ('9', 'The Bard`s Song', '7', '244'),
     ('10', 'Feeling Good', '8', '100');
+
+CREATE TABLE SpotifyClone.user(
+    user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_name VARCHAR(50),
+    age INT,
+    plan_id INT,
+    date_start DATE,
+    FOREIGN KEY (plan_id) REFERENCES SpotifyClone.plan(plan_id)
+);
 INSERT INTO SpotifyClone.user (user_id, user_name, age, plan_id, date_start)
 VALUES
     ('1', 'Barbara Liskov', '82', '1', '2019-10-20'),
@@ -93,6 +84,14 @@ VALUES
 	('8', 'Christopher Alexander', '85', '3', '2019-06-05'),
 	('9', 'Judith Butler', '45', '3', '2020-05-13'),
 	('10', 'Jorge Amado', '58', '3', '2017-02-17');
+
+CREATE TABLE SpotifyClone.follow_artists(
+    user_id INT,
+    artist_id INT,
+    CONSTRAINT PRIMARY KEY(user_id, artist_id),
+    FOREIGN KEY (user_id) REFERENCES SpotifyClone.user(user_id),
+    FOREIGN KEY (artist_id) REFERENCES SpotifyClone.artist(artist_id)
+);
 INSERT INTO SpotifyClone.follow_artist (user_id, artist_id)
 VALUES
     ('1', '1'),
@@ -109,6 +108,14 @@ VALUES
     ('7', '6'),
     ('9', '3'),
     ('10', '2');
+
+CREATE TABLE SpotifyClone.history(
+    user_id INT,
+    song_id INT,
+    CONSTRAINT PRIMARY KEY(user_id, song_id),
+    FOREIGN KEY (user_id) REFERENCES SpotifyClone.user(user_id),
+    FOREIGN KEY (song_id) REFERENCES SpotifyClone.song(song_id)
+);
 INSERT INTO SpotifyClone.history (user_id, song_id)
 VALUES
     ('1', '8'),
