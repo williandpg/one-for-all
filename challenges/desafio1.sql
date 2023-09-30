@@ -85,7 +85,7 @@ VALUES
 	('9', 'Judith Butler', '45', '3', '2020-05-13'),
 	('10', 'Jorge Amado', '58', '3', '2017-02-17');
 
-CREATE TABLE SpotifyClone.follow_artists(
+CREATE TABLE SpotifyClone.follow_artist (
     user_id INT,
     artist_id INT,
     CONSTRAINT PRIMARY KEY(user_id, artist_id),
