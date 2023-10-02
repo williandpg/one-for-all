@@ -112,25 +112,26 @@ VALUES
 CREATE TABLE SpotifyClone.history(
     user_id INT,
     song_id INT,
+    date_reproduction DATE,
     CONSTRAINT PRIMARY KEY(user_id, song_id),
     FOREIGN KEY (user_id) REFERENCES SpotifyClone.user(user_id),
     FOREIGN KEY (song_id) REFERENCES SpotifyClone.song(song_id)
 );
-INSERT INTO SpotifyClone.history (user_id, song_id)
+INSERT INTO SpotifyClone.history (user_id, song_id, date_reproduction)
 VALUES
-    ('1', '8'),
-	('1', '2'),
-	('1', '10'),
-	('2', '10'),
-	('2', '7'),
-	('3', '10'),
-	('3', '2'),
-	('4', '8'),
-	('5', '8'),
-	('5', '5'),
-	('6', '7'),
-	('6', '1'),
-	('7', '4'),
-	('8', '4'),
-	('9', '9'),
-	('10', '3');
+    ('1', '8', '2022-02-28'),
+	('1', '2', '2020-05-02'),
+	('1', '10', '2020-03-06'),
+	('2', '10', '2022-08-05'),
+	('2', '7', '2020-01-02'),
+	('3', '10', '2020-11-13'),
+	('3', '2', '2020-12-05'),
+	('4', '8', '2021-08-15'),
+	('5', '8', '2022-01-09'),
+	('5', '5', '2020-08-06'),
+	('6', '7', '2017-01-24'),
+	('6', '1', '2017-10-12'),
+	('7', '4', '2011-12-15'),
+	('8', '4', '2012-03-17'),
+	('9', '9', '2022-02-24'),
+	('10', '3', '2015-12-13');
