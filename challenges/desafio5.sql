@@ -3,7 +3,7 @@ SELECT
     COUNT(s.song_id) AS "reproducoes"
 FROM 
     SpotifyClone.history r
-    INNER JOIN SpotifyClone.songs s ON s.song_id = r.song_id
+    INNER JOIN SpotifyClone.song s ON s.song_id = r.song_id
 GROUP BY 
     s.song_name
 ORDER BY
