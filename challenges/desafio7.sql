@@ -5,7 +5,7 @@ SELECT
 FROM
     SpotifyClone.artist ar
     JOIN SpotifyClone.album a ON a.artist_id = ar.artist_id
-    JOIN SpotifyClone.following f ON f.artist_id = ar.artist_id
+    JOIN SpotifyClone.follow_artist f ON f.artist_id = ar.artist_id
 GROUP BY
     ar.artist_name,
     a.album_name
