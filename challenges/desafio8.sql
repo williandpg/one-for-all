@@ -6,4 +6,4 @@ FROM
 JOIN
     SpotifyClone.album a ON ar.artist_id = a.artist_id
 WHERE
-    ar.artist_name = "Elis Regina"
+    ar.artist_name = "Elis Regina";
